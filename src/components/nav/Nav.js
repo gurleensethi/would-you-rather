@@ -1,10 +1,11 @@
 import React from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
+import { handleLogoutUser } from "../../actions/authUser";
 
 class Nav extends React.Component {
   render() {
-    const { user } = this.props;
+    const { user, logout } = this.props;
     return (
       <div>
         {user && (
@@ -29,9 +30,7 @@ class Nav extends React.Component {
           <li>
             <Link to="/">Leader Board</Link>
           </li>
-          {user && (
-            <li>{!!user ? <button>Logout</button> : <button>Login</button>}</li>
-          )}
+          {user && <button onClick={logout}>Logout</button>}
         </ul>
       </div>
     );
@@ -44,4 +43,10 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(mapStateToProps)(Nav);
+const mapDispatchToProps = dispatch => {
+  return {
+    logout: () => dispatch(handleLogoutUser())
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Nav);
