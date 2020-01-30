@@ -1,8 +1,14 @@
 import React from "react";
 import { connect } from "react-redux";
 import { User } from "../shared/User";
+import { loginUser } from "../../actions/authUser";
 
 class Login extends React.Component {
+  handleUserSelect = user => {
+    const { dispatch } = this.props;
+    dispatch(loginUser(user.id));
+  };
+
   render() {
     const { users } = this.props;
     return (
@@ -10,7 +16,7 @@ class Login extends React.Component {
         {users.map(user => {
           return (
             <li key={user.id}>
-              <User user={user} onSelect={() => console.log(user)} />
+              <User user={user} onSelect={() => this.handleUserSelect(user)} />
             </li>
           );
         })}
