@@ -1,12 +1,12 @@
 import React from "react";
 import { connect } from "react-redux";
 import { User } from "../shared/User";
-import { loginUser } from "../../actions/authUser";
+import { handleLoginUser } from "../../actions/authUser";
 
 class Login extends React.Component {
   handleUserSelect = user => {
     const { dispatch } = this.props;
-    dispatch(loginUser(user.id));
+    dispatch(handleLoginUser(user.id));
   };
 
   render() {

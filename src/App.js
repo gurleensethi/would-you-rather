@@ -1,6 +1,6 @@
 import React from "react";
 import "./App.css";
-import { BrowserRouter, Route, HashRouter } from "react-router-dom";
+import { Route, HashRouter } from "react-router-dom";
 import Login from "./components/auth/Login";
 import { connect } from "react-redux";
 import { handleInitialData } from "./actions/shared";
