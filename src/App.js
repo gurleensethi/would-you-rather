@@ -2,6 +2,7 @@ import React from "react";
 import "./App.css";
 import { Route, HashRouter } from "react-router-dom";
 import Login from "./components/auth/Login";
+import Home from "./components/home/Home";
 import { connect } from "react-redux";
 import { handleInitialData } from "./actions/shared";
 
@@ -15,6 +16,7 @@ class App extends React.Component {
     return (
       <HashRouter basename={process.env.PUBLIC_URL + "/"}>
         <Route path="/login" render={() => <Login />} exact />
+        <Route path="/" render={() => <Home />} exact />
       </HashRouter>
     );
   }

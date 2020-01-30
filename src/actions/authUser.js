@@ -1,4 +1,4 @@
-export const LOGIN_USER = "login_user";
+export const LOGIN_USER = "LOGIN_USER";
 
 export const loginUser = userId => {
   return {

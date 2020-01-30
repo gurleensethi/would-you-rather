@@ -1,4 +1,4 @@
-export const UPDATE_USERS = "update_users";
+export const UPDATE_USERS = "UPDATE_USERS";
 
 export const updateUsers = users => {
   return {
