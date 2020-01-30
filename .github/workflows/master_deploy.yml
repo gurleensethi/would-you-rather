@@ -1,0 +1,34 @@
+name: Node CI
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [12.x]
+    steps:
+      - uses: actions/checkout@v1
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node-version }}
+      - name: npm install, build, and push
+        run: |
+          npm ci
+          npm run build
+          cd build
+          git init
+          git config --global user.email sarusethi@rocketmail.com
+          git config --global user.name Gurleen Sethi
+          git remote add origin https://${{secrets.PERSONAL_ACCESS_TOKEN}}@github.com/gurleensethi/would-you-rather.git
+          git checkout -b gh-pages
+          git add .
+          git commit -m "Update"
+          git push origin gh-pages -f
+        env:
+          CI: true
