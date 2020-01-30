@@ -1,6 +1,6 @@
 import React from "react";
 import "./App.css";
-import { BrowserRouter, Route } from "react-router-dom";
+import { BrowserRouter, Route, HashRouter } from "react-router-dom";
 import Login from "./components/auth/Login";
 import { connect } from "react-redux";
 import { handleInitialData } from "./actions/shared";
@@ -13,9 +13,9 @@ class App extends React.Component {
 
   render() {
     return (
-      <BrowserRouter basename={process.env.PUBLIC_URL + "/"}>
+      <HashRouter basename={process.env.PUBLIC_URL + "/"}>
         <Route path="/login" render={() => <Login />} exact />
-      </BrowserRouter>
+      </HashRouter>
     );
   }
 }
