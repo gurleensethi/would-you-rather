@@ -19,10 +19,20 @@ class QuestionList extends React.Component {
   }
 }
 
-const mapStateToProps = state => {
-  console.log("Questions", Object.values(state.questions));
+const mapStateToProps = (state, { answered }) => {
+  // Filter out the questions based on if the question
+  // has been answered by the user or not.
+  const questions = Object.values(state.questions).filter(
+    ({ optionOne, optionTwo }) => {
+      const hasAnswered =
+        optionOne.votes.indexOf(state.authUser) !== -1 ||
+        optionTwo.votes.indexOf(state.authUser) !== -1;
+      return answered ? hasAnswered : !hasAnswered;
+    }
+  );
+
   return {
-    questions: Object.values(state.questions),
+    questions: questions,
     users: state.users
   };
 };

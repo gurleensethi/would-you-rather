@@ -4,7 +4,14 @@ import QuestionList from "./QuestionList";
 
 class Home extends React.Component {
   render() {
-    return <QuestionList />;
+    return (
+      <div>
+        Unanswered Questons:
+        <QuestionList answered={false} />
+        Answered Questons:
+        <QuestionList answered={true} />
+      </div>
+    );
   }
 }
 
