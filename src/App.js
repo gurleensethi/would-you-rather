@@ -7,6 +7,7 @@ import { connect } from "react-redux";
 import { handleInitialData } from "./actions/shared";
 import Nav from "./components/nav/Nav";
 import NotFound from "./components/not-found/not-found";
+import NewQuestion from "./components/new-question/NewQuestion";
 
 class App extends React.Component {
   componentDidMount() {
@@ -21,6 +22,7 @@ class App extends React.Component {
         <Switch>
           <Route path="/login" render={() => <Login />} exact />
           <Route path="/" render={() => <Home />} exact />
+          <Route path="/new" render={() => <NewQuestion />} exact />
           <Route component={NotFound} />
         </Switch>
       </HashRouter>
