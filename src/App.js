@@ -8,6 +8,7 @@ import { handleInitialData } from "./actions/shared";
 import Nav from "./components/nav/Nav";
 import NotFound from "./components/not-found/not-found";
 import NewQuestion from "./components/new-question/NewQuestion";
+import QuestionDetail from "./components/question/QuestionDetail";
 
 class App extends React.Component {
   componentDidMount() {
@@ -16,22 +17,36 @@ class App extends React.Component {
   }
 
   render() {
+    const { loading } = this.props;
     return (
       <HashRouter basename={process.env.PUBLIC_URL + "/"}>
         <Nav />
-        <Switch>
-          <Route path="/login" render={() => <Login />} exact />
-          <Route path="/" render={() => <Home />} exact />
-          <Route path="/new" render={() => <NewQuestion />} exact />
-          <Route component={NotFound} />
-        </Switch>
+        {loading ? (
+          "Loading..."
+        ) : (
+          <Switch>
+            <Route
+              path="/questions/:question_id"
+              render={({ match }) => {
+                return <QuestionDetail id={match.params.question_id} />;
+              }}
+              exact
+            />
+            <Route path="/login" render={() => <Login />} exact />
+            <Route path="/" render={() => <Home />} exact />
+            <Route path="/new" render={() => <NewQuestion />} exact />
+            <Route component={NotFound} />
+          </Switch>
+        )}
       </HashRouter>
     );
   }
 }
 
 const mapStateToProps = state => {
-  return {};
+  return {
+    loading: state.loading
+  };
 };
 
 export default connect(mapStateToProps)(App);

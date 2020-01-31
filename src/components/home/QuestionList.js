@@ -1,16 +1,21 @@
 import React from "react";
 import { connect } from "react-redux";
 import { Question } from "../shared/Question";
+import { withRouter } from "react-router-dom";
 
 class QuestionList extends React.Component {
   render() {
-    const { users, questions } = this.props;
+    const { users, questions, navigateToQuestion } = this.props;
     return (
       <ul>
         {questions.map(question => {
           return (
             <li key={question.id}>
-              <Question user={users[question.author]} question={question} />
+              <Question
+                user={users[question.author]}
+                question={question}
+                onViewPoll={() => navigateToQuestion(question)}
+              />
             </li>
           );
         })}
@@ -37,4 +42,15 @@ const mapStateToProps = (state, { answered }) => {
   };
 };
 
-export default connect(mapStateToProps)(QuestionList);
+const mapDispatchToProps = (dispatch, ownProps) => {
+  return {
+    navigateToQuestion: question => {
+      const { history } = ownProps;
+      history.push(`/questions/${question.id}`);
+    }
+  };
+};
+
+export default withRouter(
+  connect(mapStateToProps, mapDispatchToProps)(QuestionList)
+);

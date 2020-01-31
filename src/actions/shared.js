@@ -2,6 +2,7 @@ import { updateUsers } from "./users";
 import { updateQuestions } from "./questions";
 import { _getUsers, _getQuestions } from "../_DATA";
 import { loginUser } from "./authUser";
+import { stopLoading } from "./loading";
 
 export function handleInitialData() {
   return dispatch => {
@@ -11,6 +12,7 @@ export function handleInitialData() {
 
       const loggedInUserId = localStorage.getItem("userId");
       dispatch(loginUser(loggedInUserId));
+      dispatch(stopLoading());
     });
   };
 }
