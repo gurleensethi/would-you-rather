@@ -1,11 +1,12 @@
 import React from "react";
 import "./App.css";
-import { Route, HashRouter } from "react-router-dom";
+import { Route, HashRouter, Switch } from "react-router-dom";
 import Login from "./components/auth/Login";
 import Home from "./components/home/Home";
 import { connect } from "react-redux";
 import { handleInitialData } from "./actions/shared";
 import Nav from "./components/nav/Nav";
+import NotFound from "./components/not-found/not-found";
 
 class App extends React.Component {
   componentDidMount() {
@@ -17,8 +18,11 @@ class App extends React.Component {
     return (
       <HashRouter basename={process.env.PUBLIC_URL + "/"}>
         <Nav />
-        <Route path="/login" render={() => <Login />} exact />
-        <Route path="/" render={() => <Home />} exact />
+        <Switch>
+          <Route path="/login" render={() => <Login />} exact />
+          <Route path="/" render={() => <Home />} exact />
+          <Route component={NotFound} />
+        </Switch>
       </HashRouter>
     );
   }
