@@ -2,6 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 import { User } from "../shared/User";
 import { handleLoginUser } from "../../actions/authUser";
+import { Redirect } from "react-router-dom";
 
 class Login extends React.Component {
   handleUserSelect = user => {
@@ -10,7 +11,12 @@ class Login extends React.Component {
   };
 
   render() {
-    const { users } = this.props;
+    const { users, isLoggedIn } = this.props;
+
+    if (isLoggedIn) {
+      return <Redirect to="/" />;
+    }
+
     return (
       <ul>
         {users.map(user => {
@@ -27,6 +33,7 @@ class Login extends React.Component {
 
 const mapStateToProps = state => {
   return {
+    isLoggedIn: !!state.authUser,
     users: Object.values(state.users)
   };
 };
