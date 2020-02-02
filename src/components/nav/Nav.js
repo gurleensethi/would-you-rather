@@ -1,45 +1,100 @@
 import React from "react";
 import { connect } from "react-redux";
-import { Link } from "react-router-dom";
+import { Link, withRouter } from "react-router-dom";
 import { handleLogoutUser } from "../../actions/authUser";
+import styled, { css } from "styled-components";
+import Avatar from "../shared/Avatar";
+import Button from "../shared/Button";
+import Divider from "../shared/Divider";
+
+const NavContainer = styled.div`
+  display: flex;
+  margin: 0;
+  padding: 20px;
+  align-items: center;
+`;
+
+const NavList = styled.ul`
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: inline;
+`;
+
+const NavListItem = styled.li`
+  display: inline;
+  margin: 20px;
+`;
+
+const NavLink = styled(({ className, children, isActive, ...rest }) => (
+  <Link className={className} {...rest}>
+    {children}
+  </Link>
+))`
+  border: none;
+  text-decoration: none;
+  ${({ isActive }) => {
+    return css`
+      color: ${isActive ? "red" : "grey"};
+    `;
+  }}
+`;
+
+const ProfileBlock = styled.div`
+  display: flex;
+  margin-left: auto;
+  align-items: center;
+`;
+
+const ProfileDetails = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;
 
 class Nav extends React.Component {
   render() {
-    const { user, logout } = this.props;
+    const { user, logout, pathname } = this.props;
     return (
-      <div>
-        {user && (
-          <div>
-            {" "}
-            Hello {user.name}{" "}
-            <img
-              src={user.avatarURL}
-              alt="user avatar"
-              width="30"
-              height="30"
-            />
-          </div>
-        )}
-        <ul>
-          <li>
-            <Link to="/">Home</Link>
-          </li>
-          <li>
-            <Link to="/add">New Question</Link>
-          </li>
-          <li>
-            <Link to="/leaderboard">Leader Board</Link>
-          </li>
-          {user && <button onClick={logout}>Logout</button>}
-        </ul>
-      </div>
+      <NavContainer>
+        <NavList>
+          <NavListItem>
+            <NavLink to="/" isActive={"/" === pathname}>
+              Home
+            </NavLink>
+          </NavListItem>
+          <NavListItem>
+            <NavLink to="/add" isActive={"/add" === pathname}>
+              New Question
+            </NavLink>
+          </NavListItem>
+          <NavListItem>
+            <NavLink to="/leaderboard" isActive={"/leaderboard" === pathname}>
+              Leader Board
+            </NavLink>
+          </NavListItem>
+        </NavList>
+        <ProfileBlock>
+          {user && (
+            <React.Fragment>
+              <ProfileDetails>
+                <Avatar src={user.avatarURL} size={30} />
+                Hello {user.name}
+              </ProfileDetails>
+              <Divider width={1} height={40} hMargin={20} />
+              <Button onClick={logout}>Logout</Button>
+            </React.Fragment>
+          )}
+        </ProfileBlock>
+      </NavContainer>
     );
   }
 }
 
-const mapStateToProps = state => {
+const mapStateToProps = (state, ownProps) => {
   return {
-    user: state.users[state.authUser]
+    user: state.users[state.authUser],
+    pathname: ownProps.location.pathname
   };
 };
 
@@ -49,4 +104,4 @@ const mapDispatchToProps = dispatch => {
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Nav);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Nav));
