@@ -2,6 +2,27 @@ import React from "react";
 import { connect } from "react-redux";
 import { handleCreateQuestion } from "../../actions/questions";
 import { withRouter } from "react-router-dom";
+import styled from "styled-components";
+import Button from "../shared/Button";
+import SizedBox from "../shared/SizedBox";
+
+const NewQuestionContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  max-width: 600px;
+  margin: 0 auto;
+`;
+
+const TextInput = styled.input`
+  padding: 10px;
+  font-size: 16px;
+  border-radius: 8px;
+  border: 1px solid lightgrey;
+
+  &:focus {
+    border: 1px solid purple;
+  }
+`;
 
 class NewQuestion extends React.Component {
   state = {
@@ -24,25 +45,28 @@ class NewQuestion extends React.Component {
 
   render() {
     return (
-      <div>
+      <NewQuestionContainer>
         <h1>Create new question</h1>
         <h3>Would you rather...</h3>
-        <input
+        <SizedBox height={20} />
+        <TextInput
           type="text"
           name="optionA"
           onChange={this.handleChange}
           value={this.state.optionA}
           placeholder="Enter option one text here"
         />
-        <input
+        <SizedBox height={20} />
+        <TextInput
           type="text"
           name="optionB"
           onChange={this.handleChange}
           value={this.state.optionB}
           placeholder="Enter option two text here"
         />
-        <button onClick={this.handleSubmit}>Submit</button>
-      </div>
+        <SizedBox height={40} />
+        <Button onClick={this.handleSubmit}>Submit</Button>
+      </NewQuestionContainer>
     );
   }
 }

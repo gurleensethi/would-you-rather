@@ -38,6 +38,10 @@ const NavLink = styled(({ className, children, isActive, ...rest }) => (
       color: ${isActive ? "red" : "grey"};
     `;
   }}
+
+  &:focus {
+    border: none;
+  }
 `;
 
 const ProfileBlock = styled.div`
