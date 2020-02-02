@@ -3,6 +3,25 @@ import { connect } from "react-redux";
 import QuestionAnswer from "./QuestionAnswer";
 import QuestionSummary from "./QuestionSummary";
 import { Redirect } from "react-router-dom";
+import styled from "styled-components";
+
+const QuestionContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;
+
+const QuestionHeading = styled.h1`
+  margin: 20px 20px;
+  padding: 0px;
+  font-size: 40px;
+`;
+
+const QuestionTitle = styled.h3`
+  margin-bottom: 40px;
+  padding: 0px;
+  font-size: 24px;
+`;
 
 class QuestionDetail extends React.Component {
   render() {
@@ -13,16 +32,16 @@ class QuestionDetail extends React.Component {
     }
 
     return (
-      <div>
+      <QuestionContainer>
         <img src={questionUser.avatarURL} height="100" alt="user avatar" />
-        <h1>{questionUser.name} ask's</h1>
-        <h3>Would You Rather...</h3>
+        <QuestionHeading>{questionUser.name} ask's</QuestionHeading>
+        <QuestionTitle>Would You Rather...</QuestionTitle>
         {isAnswered ? (
           <QuestionSummary id={question.id} />
         ) : (
           <QuestionAnswer id={question.id} />
         )}
-      </div>
+      </QuestionContainer>
     );
   }
 }

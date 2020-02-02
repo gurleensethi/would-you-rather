@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 
 const Button = styled.button`
   border: none;
@@ -14,6 +14,22 @@ const Button = styled.button`
     cursor: pointer;
     box-shadow: 1px 5px 15px rgb(200, 200, 200);
   }
+
+  ${props => css`
+    width: ${props.width}px;
+  `}
+
+  ${({ disabled }) =>
+    disabled &&
+    css`
+      opacity: 0.5;
+      box-shadow: none;
+
+      &:hover {
+        cursor: auto;
+        box-shadow: none;
+      }
+    `}
 `;
 
 export default Button;
