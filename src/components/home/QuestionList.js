@@ -2,12 +2,39 @@ import React from "react";
 import { connect } from "react-redux";
 import { Question } from "../shared/Question";
 import { withRouter } from "react-router-dom";
+import styled from "styled-components";
+
+const QuestionsList = styled.ul`
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  max-width: 600px;
+  width: 100%;
+`;
+
+const Message = styled.p`
+  padding: 0px;
+  margin: 80px 20px;
+  font-size: 24px;
+`;
 
 class QuestionList extends React.Component {
   render() {
     const { users, questions, navigateToQuestion } = this.props;
+
+    if (questions.length === 0) {
+      return (
+        <Message>
+          Great! You have answered all questions{" "}
+          <span role="img" aria-label="tada emoji">
+            &#127881;
+          </span>
+        </Message>
+      );
+    }
+
     return (
-      <ul>
+      <QuestionsList>
         {questions.map(question => {
           return (
             <li key={question.id}>
@@ -19,7 +46,7 @@ class QuestionList extends React.Component {
             </li>
           );
         })}
-      </ul>
+      </QuestionsList>
     );
   }
 }
