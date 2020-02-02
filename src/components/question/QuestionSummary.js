@@ -9,7 +9,8 @@ class QuestionSummary extends React.Component {
       optionOneVotes,
       optionTwoVotes,
       optionOneVotePercentage,
-      optionTwoVotePercentage
+      optionTwoVotePercentage,
+      selectedOption
     } = this.props;
 
     return (
@@ -29,6 +30,7 @@ class QuestionSummary extends React.Component {
             {optionTwoVotes} of {totalVotes} votes
           </div>
         </div>
+        You selected {selectedOption}.
       </div>
     );
   }
@@ -46,7 +48,8 @@ const mapStateToProps = (state, ownProps) => {
     optionOneVotes,
     optionTwoVotes,
     optionOneVotePercentage: (optionOneVotes / totalVotes) * 100,
-    optionTwoVotePercentage: (optionTwoVotes / totalVotes) * 100
+    optionTwoVotePercentage: (optionTwoVotes / totalVotes) * 100,
+    selectedOption: state.users[state.authUser].answers[question.id]
   };
 };
 
