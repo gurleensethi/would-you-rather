@@ -39,7 +39,7 @@ class Login extends React.Component {
 
     return (
       <LoginContainer>
-        Select a user
+        Select a user to login with...
         <UserList>
           {users.map(user => {
             return (
