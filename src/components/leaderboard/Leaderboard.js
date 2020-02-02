@@ -16,6 +16,7 @@ class Leaderboard extends React.Component {
                   <h3>{user.name}</h3>
                   <p>Answered questions: {user.numAnswered}</p>
                   <p>Created questions: {user.numAsked}</p>
+                  <p>Score: {user.numAnswered + user.numAsked}</p>
                 </div>
               </li>
             );
