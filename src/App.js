@@ -35,7 +35,7 @@ class App extends React.Component {
             />
             <Route path="/login" render={() => <Login />} exact />
             <ProtectedRoute path="/" render={() => <Home />} exact />
-            <ProtectedRoute path="/new" render={() => <NewQuestion />} exact />
+            <ProtectedRoute path="/add" render={() => <NewQuestion />} exact />
             <Route component={NotFound} />
           </Switch>
         )}
