@@ -6,11 +6,12 @@ const Avatar = styled(({ src, className }) => (
 ))`
   ${({ size }) => css`
     border-radius: 50%;
-    background: lightgrey;
+    background: rgb(240, 240, 240);
     width: ${size || 50}px;
     height: ${size || 50}px;
     margin: 0;
-    padding: 0;
+    text-align: center;
+    line-height: ${size || 50}px;
   `}
 `;
 

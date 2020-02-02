@@ -11,6 +11,7 @@ const UserBlock = styled.div`
   border: 1px solid lightgrey;
   border-radius: 5px;
   padding: 20px;
+  transition: 0.3s;
 
   &:hover {
     cursor: pointer;

@@ -11,6 +11,7 @@ const QuestionContainer = styled.div`
   padding: 20px;
   border-radius: 8px;
   align-items: center;
+  transition: 0.3s;
 
   &:hover {
     cursor: pointer;
