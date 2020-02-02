@@ -2,7 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 import { User } from "../shared/User";
 import { handleLoginUser } from "../../actions/authUser";
-import { Redirect } from "react-router-dom";
+import { Redirect, withRouter } from "react-router-dom";
 
 class Login extends React.Component {
   handleUserSelect = user => {
@@ -11,10 +11,10 @@ class Login extends React.Component {
   };
 
   render() {
-    const { users, isLoggedIn } = this.props;
+    const { users, isLoggedIn, from } = this.props;
 
     if (isLoggedIn) {
-      return <Redirect to="/" />;
+      return <Redirect to={from} />;
     }
 
     return (
@@ -31,11 +31,13 @@ class Login extends React.Component {
   }
 }
 
-const mapStateToProps = state => {
+const mapStateToProps = (state, ownProps) => {
+  const from = ownProps.location.state ? ownProps.location.state.from : "/";
   return {
+    from,
     isLoggedIn: !!state.authUser,
     users: Object.values(state.users)
   };
 };
 
-export default connect(mapStateToProps)(Login);
+export default withRouter(connect(mapStateToProps)(Login));

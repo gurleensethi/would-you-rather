@@ -9,7 +9,16 @@ class ProtectedRoute extends React.Component {
       <Route
         path={path}
         render={history =>
-          isLoggedIn ? render(history) : <Redirect to="/login" />
+          isLoggedIn ? (
+            render(history)
+          ) : (
+            <Redirect
+              to={{
+                pathname: "/login",
+                state: { from: this.props.path }
+              }}
+            />
+          )
         }
       />
     );
