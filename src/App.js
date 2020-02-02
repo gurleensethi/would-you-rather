@@ -27,7 +27,7 @@ class App extends React.Component {
           "Loading..."
         ) : (
           <Switch>
-            <Route
+            <ProtectedRoute
               path="/questions/:question_id"
               render={({ match }) => {
                 return <QuestionDetail id={match.params.question_id} />;

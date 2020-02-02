@@ -4,9 +4,10 @@ import { connect } from "react-redux";
 
 class ProtectedRoute extends React.Component {
   render() {
-    const { path, render, isLoggedIn } = this.props;
+    const { path, render, isLoggedIn, ...rest } = this.props;
     return (
       <Route
+        {...rest}
         path={path}
         render={history =>
           isLoggedIn ? (
