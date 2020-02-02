@@ -1,6 +1,6 @@
 import React from "react";
 import "./App.css";
-import { Route, HashRouter, Switch } from "react-router-dom";
+import { Route, HashRouter, Switch, BrowserRouter } from "react-router-dom";
 import Login from "./components/auth/Login";
 import Home from "./components/home/Home";
 import { connect } from "react-redux";
@@ -21,7 +21,7 @@ class App extends React.Component {
   render() {
     const { loading } = this.props;
     return (
-      <HashRouter basename={process.env.PUBLIC_URL + "/"}>
+      <BrowserRouter basename={process.env.PUBLIC_URL + "/"}>
         <Nav />
         {loading ? (
           "Loading..."
@@ -45,7 +45,7 @@ class App extends React.Component {
             <Route component={NotFound} />
           </Switch>
         )}
-      </HashRouter>
+      </BrowserRouter>
     );
   }
 }
