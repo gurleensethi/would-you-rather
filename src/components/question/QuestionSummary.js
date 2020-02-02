@@ -1,5 +1,30 @@
 import React from "react";
 import { connect } from "react-redux";
+import styled, { css } from "styled-components";
+import ProgressBar from "../shared/ProgressBar";
+
+const Container = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 600px;
+`;
+
+const OptionContainer = styled.div`
+  width: 100%;
+  border-radius: 8px;
+  padding: 20px;
+  margin: 20px;
+
+  ${({ selected }) => css`
+    border: 1px solid ${selected ? "green" : "rgb(220, 220, 220)"};
+  `}
+
+  & > h3:first-child {
+    margin: 0;
+    padding: 0;
+  }
+`;
 
 class QuestionSummary extends React.Component {
   render() {
@@ -14,24 +39,29 @@ class QuestionSummary extends React.Component {
     } = this.props;
 
     return (
-      <div>
-        Results:
-        <div>
+      <Container>
+        <h3>Results</h3>
+        <OptionContainer selected={selectedOption === "optionOne"}>
           <h3>Would you rather {question.optionOne.text}</h3>
-          <div>{optionOneVotePercentage}%</div>
+          <ProgressBar
+            percentage={optionOneVotePercentage}
+            isSelected={selectedOption === "optionOne"}
+          />
           <div>
             {optionOneVotes} of {totalVotes} votes
           </div>
-        </div>
-        <div>
+        </OptionContainer>
+        <OptionContainer selected={selectedOption === "optionTwo"}>
           <h3>Would you rather {question.optionTwo.text}</h3>
-          <div>{optionTwoVotePercentage}%</div>
+          <ProgressBar
+            percentage={optionTwoVotePercentage}
+            isSelected={selectedOption === "optionTwo"}
+          />
           <div>
             {optionTwoVotes} of {totalVotes} votes
           </div>
-        </div>
-        You selected {selectedOption}.
-      </div>
+        </OptionContainer>
+      </Container>
     );
   }
 }
