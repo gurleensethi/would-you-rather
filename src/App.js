@@ -10,6 +10,7 @@ import NotFound from "./components/not-found/not-found";
 import NewQuestion from "./components/new-question/NewQuestion";
 import QuestionDetail from "./components/question/QuestionDetail";
 import ProtectedRoute from "./components/shared/ProtectedRoute";
+import Leaderboard from "./components/leaderboard/Leaderboard";
 
 class App extends React.Component {
   componentDidMount() {
@@ -36,6 +37,11 @@ class App extends React.Component {
             <Route path="/login" render={() => <Login />} exact />
             <ProtectedRoute path="/" render={() => <Home />} exact />
             <ProtectedRoute path="/add" render={() => <NewQuestion />} exact />
+            <ProtectedRoute
+              path="/leaderboard"
+              render={() => <Leaderboard />}
+              exact
+            />
             <Route component={NotFound} />
           </Switch>
         )}

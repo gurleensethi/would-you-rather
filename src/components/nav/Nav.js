@@ -25,10 +25,10 @@ class Nav extends React.Component {
             <Link to="/">Home</Link>
           </li>
           <li>
-            <Link to="/new">New Question</Link>
+            <Link to="/add">New Question</Link>
           </li>
           <li>
-            <Link to="/">Leader Board</Link>
+            <Link to="/leaderboard">Leader Board</Link>
           </li>
           {user && <button onClick={logout}>Logout</button>}
         </ul>
