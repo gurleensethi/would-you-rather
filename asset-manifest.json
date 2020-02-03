@@ -1,0 +1,23 @@
+{
+  "files": {
+    "main.css": "/would-you-rather/static/css/main.d1b05096.chunk.css",
+    "main.js": "/would-you-rather/static/js/main.00f3b885.chunk.js",
+    "main.js.map": "/would-you-rather/static/js/main.00f3b885.chunk.js.map",
+    "runtime-main.js": "/would-you-rather/static/js/runtime-main.dd9dcef0.js",
+    "runtime-main.js.map": "/would-you-rather/static/js/runtime-main.dd9dcef0.js.map",
+    "static/js/2.9d7a22aa.chunk.js": "/would-you-rather/static/js/2.9d7a22aa.chunk.js",
+    "static/js/2.9d7a22aa.chunk.js.map": "/would-you-rather/static/js/2.9d7a22aa.chunk.js.map",
+    "index.html": "/would-you-rather/index.html",
+    "precache-manifest.bca5af5b3c8c352eac065180ab22e69c.js": "/would-you-rather/precache-manifest.bca5af5b3c8c352eac065180ab22e69c.js",
+    "service-worker.js": "/would-you-rather/service-worker.js",
+    "static/css/main.d1b05096.chunk.css.map": "/would-you-rather/static/css/main.d1b05096.chunk.css.map",
+    "static/js/2.9d7a22aa.chunk.js.LICENSE": "/would-you-rather/static/js/2.9d7a22aa.chunk.js.LICENSE",
+    "static/media/reward.png": "/would-you-rather/static/media/reward.cb668a5a.png"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.dd9dcef0.js",
+    "static/js/2.9d7a22aa.chunk.js",
+    "static/css/main.d1b05096.chunk.css",
+    "static/js/main.00f3b885.chunk.js"
+  ]
+}
